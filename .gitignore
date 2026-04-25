@@ -30,6 +30,9 @@ lerna-debug.log*
 .DS_Store
 Thumbs.db
 
+# Large source assets (use compressed versions)
+*.png
+
 # Vite
 *.local
 
