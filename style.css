@@ -520,51 +520,106 @@ section {
 }
 
 @media (max-width: 768px) {
+    /* Nav — stay horizontal, show only Resume */
     nav {
-        padding: 24px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
+        padding: 0 24px;
+        height: 64px;
+        flex-direction: row;
+        align-items: center;
     }
-    .nav-links { display: none; }
+    .nav-links {
+        display: flex;
+        gap: 0;
+    }
+    .nav-links a:not([href$=".pdf"]) { display: none; }
     .skip-intro { display: none; }
-    
-    #journey { height: 100vh; }
-    .sticky-container {
-        position: relative;
+
+    /* Hero — photo as full bg, text on top */
+    #hero-section {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 100px;
+        align-items: center;
+        justify-content: flex-start;
     }
-    #chapter-overlay {
-        bottom: 10%; left: 24px; right: 24px;
+    .hero-photo-wrap {
+        display: block;
+        width: 100%;
+        left: 0;
+        opacity: 1;
     }
-    .chapter-content h2 { font-size: 36px; }
-    
+    .hero-photo {
+        object-position: 55% 20%;
+        opacity: 0.25;
+        mix-blend-mode: normal;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%);
+        filter: contrast(1.0) brightness(0.7) grayscale(0.4);
+    }
+    .hero-content {
+        max-width: 100%;
+    }
+    .hero-content h1 {
+        font-size: 44px;
+        margin: 16px 0 24px 0;
+    }
+    .hero-content p {
+        font-size: 16px;
+        max-width: 100%;
+        margin-bottom: 36px;
+    }
+
+    /* Content sections */
     .content-wrapper { padding: 80px 24px; }
-    .section-title { font-size: 42px; margin-bottom: 48px; }
-    
-    #impact .grid, #work .grid, .skills-grid {
-        grid-template-columns: 1fr;
+    .section-title { font-size: 36px; margin-bottom: 40px; }
+    section { margin-bottom: 96px; }
+
+    /* Impact metrics — 2 per row */
+    #impact .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
     }
-    
+    .metric-value { font-size: 40px; }
+
+    /* About */
+    #about { grid-template-columns: 1fr; gap: 40px; }
+    .about-text p { font-size: 16px; }
+    .pull-quote { font-size: 28px; padding-left: 24px; }
+
+    /* Work cards — single column */
+    #work .grid { grid-template-columns: 1fr; gap: 24px; }
+    .work-card { padding: 28px; }
+    .work-title { font-size: 24px; }
+
+    /* Skills — single column */
+    .skills-grid { grid-template-columns: 1fr; gap: 0; }
     .skill-group {
         grid-template-columns: 1fr;
         gap: 8px;
+        padding: 24px 0;
     }
-    
-    .post-card {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
+    .skill-list { font-size: 14px; }
+
+    /* Writing */
+    .post-card { grid-template-columns: 1fr; gap: 16px; padding: 28px 0; }
+    .post-title { font-size: 22px; }
+    .post-desc { font-size: 15px; max-width: 100%; }
     .post-status { text-align: left; }
-    
+
+    /* Contact */
+    #contact { padding: 80px 0 60px 0; }
+    #contact p { font-size: 22px; margin-bottom: 40px; }
     .contact-links {
         flex-direction: column;
-        gap: 32px;
+        align-items: center;
+        gap: 24px;
     }
-    
-    /* Reveal default cursor on mobile, disable custom */
+    .contact-links a { font-size: 13px; }
+
+    /* Disable custom cursor */
     body { cursor: auto; }
     #cursor-dot, #cursor-ring { display: none; }
-    .hero-photo-wrap { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
