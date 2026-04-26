@@ -108,12 +108,12 @@ nav.scrolled {
 .nav-links a:hover {
     color: var(--gold);
 }
-.nav-links a[href="/resume"] {
+.nav-links .resume-nav-link {
     border: 1px solid rgba(240, 210, 100, 0.4);
     padding: 8px 16px;
     color: var(--gold);
 }
-.nav-links a[href="/resume"]:hover {
+.nav-links .resume-nav-link:hover {
     background: rgba(240, 210, 100, 0.1);
 }
 .skip-intro {
