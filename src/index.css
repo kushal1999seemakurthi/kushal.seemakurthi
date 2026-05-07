@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+@theme {
+  --color-air: #FDFBF7;
+  --color-water: #C4E0E5;
+  --color-earth: #E6D3B3;
+  --color-fire: #FDE8C4;
+  --color-spirit: #F0F4F8;
+  
+  --color-canvas: #FAFAFA;
+  --color-text: #1A1A1A;
+  
+  --font-serif: "Playfair Display", "Cormorant Garamond", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* For smooth scroll and hiding scrollbar for aesthetic purposes */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.writing-vertical {
+  writing-mode: vertical-rl;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.pause-marquee:hover .animate-marquee {
+  animation-play-state: paused;
+}

@@ -2,6 +2,8 @@
 
 *This guide is part of the Aegis Immersive Architecture. It outlines how to source, license, and prepare 3D models for high-performance WebGL applications without needing to model everything from scratch in Blender.*
 
+> ℹ️ **ImmersivePort Creature GLBs — Six Forms Needed.** Source the following CC0 creature models (in order of priority for Phase 1): (1) paper crane, (2) koi fish, (3) stone tortoise, (4) agile squirrel, (5) phoenix, (6) ink seal / calligraphic form. Quaternius and Sketchfab CC0 are the recommended starting points. Store all creature GLBs in `public/assets/creatures/`. The squirrel (form 4) is a narrative intermediate between tortoise and phoenix in the Earth→Fire transition — ensure it conveys speed and nimble energy, not passivity.
+
 ## 1. The "Zero Copyright" Goldmines (100% CC0)
 If you want to avoid copyright issues entirely, look for **CC0 (Public Domain)** assets. You can use these commercially without any attribution or licensing fees.
 

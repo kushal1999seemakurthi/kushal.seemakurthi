@@ -2,6 +2,8 @@
 
 *This document is an extension of the Aegis Immersive Architecture, detailing how to position, animate, and interact with 3D elements outside the standard HTML/CSS DOM.*
 
+> ℹ️ **ImmersivePort Stack Note.** This guide covers raw Three.js patterns. ImmersivePort uses **React Three Fiber (R3F)**, where Three.js objects are expressed as JSX. Equivalences: `scene.getObjectByName('X')` → `useRef` attached to the JSX `<mesh>` node; `mesh.position.set(x,y,z)` → `ref.current.position.set(x,y,z)` inside `useFrame`; Raycasting → `@react-three/drei` `<Raycaster>` or `useThree().raycaster`; GSAP animation targets → the same `ref.current.position` / `ref.current.rotation` objects. All mathematical concepts (Vector3, Quaternions, raycasting, GSAP scrubbing) apply identically in R3F.
+
 ## 1. The Visual Pipeline (Blender to Browser)
 In WebGL, layout is rarely done via trial-and-error code. The source of truth for positioning originates in 3D modeling software.
 
