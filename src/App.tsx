@@ -277,7 +277,7 @@ export default function App() {
                  </a>
 
                  <div className="max-w-xl space-y-6">
-                   <p className="font-serif italic text-3xl leading-relaxed text-[#5c2323]">IIT Dharwad B.Tech<br/>CSE 2017–2021</p>
+                   <p className="font-serif italic text-3xl leading-relaxed text-[#5c2323]">IIT Dharwad B.Tech<br/>Mechanical 2017–2021</p>
                    <div className="h-[1px] w-12 bg-[#4a1c1c] my-8"></div>
                    <p className="text-[11px] uppercase tracking-[0.2em] opacity-80">JEE Advanced — Top 1% All India Rank</p>
                    <p className="text-[11px] uppercase tracking-[0.2em] opacity-80">District Olympiad Winner &nbsp;/&nbsp; CGPA 7.56 / 10</p>
