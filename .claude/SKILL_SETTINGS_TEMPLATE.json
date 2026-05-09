@@ -1,0 +1,44 @@
+{
+  "comments": "Reusable settings template for web development projects. Copy to .claude/settings.json and adapt for your project.",
+  "model": "claude-opus-4-7",
+  "permissions": {
+    "bash": ["npm", "git", "node", "vite", "tsc"],
+    "read": ["**"],
+    "edit": ["src/**", "public/**"],
+    "write": []
+  },
+  "hooks": {
+    "before_tool": [
+      {
+        "triggers": ["bash"],
+        "command": "npm run lint && npm run type-check",
+        "description": "Verify type-check passes before running bash commands (prevents broken code commit)",
+        "skip_on": ["npm (install|update|audit)", "git", "rm", "ls"],
+        "enabled": false,
+        "reason": "Enable manually when code changes require type safety before testing"
+      }
+    ],
+    "after_tool": [
+      {
+        "triggers": ["edit"],
+        "command": "cd {{ cwd }} && npm run lint 2>&1 | tail -20",
+        "description": "Auto lint after file edits to catch errors early",
+        "enabled": false,
+        "reason": "Disable if linter is slow; can enable for final polish phase"
+      }
+    ]
+  },
+  "allowed_prompts": [
+    "npm run dev",
+    "npm run build",
+    "npm run lint",
+    "git status",
+    "git log",
+    "git diff"
+  ],
+  "env_vars": {
+    "VITE_APP_NAME": "YourProjectName",
+    "NODE_ENV": "development"
+  },
+  "notes": "This template enforces: (1) Single source of truth via constants.ts, (2) Type safety via tsc, (3) Code quality via linter, (4) Git discipline via hooks. Adapt allowed_prompts and permissions for your CI/CD pipeline."
+}
