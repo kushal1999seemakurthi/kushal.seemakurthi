@@ -343,13 +343,26 @@ export function MobiusExperience() {
 
       {/* Layer 20 — heading. Sits ABOVE the canvas; the strip is visible
           flowing behind these blocks, between the cream page background and
-          this serif text. */}
+          this serif text. The LEFT column (badge + heading + description)
+          slides off-right when CLOSEUP is active, so the cinematic strip
+          framing isn't fighting the title for attention. The RIGHT column
+          (dots + view label) stays put — it's the legend for the active view. */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-6 pb-4">
-        <div className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-60 mb-8 border-b border-[#4a1c1c]/20 pb-2 inline-block">
-          02 / Experience
-        </div>
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
+
+          {/* Left — slides right on closeup so the cinematic strip framing
+              isn't fighting the title for attention; stays visible (just
+              displaced + slightly receded) so the section remains anchored. */}
+          <div
+            className={`transition-all duration-700 ease-out will-change-transform ${
+              view === 'closeup'
+                ? 'translate-x-[34vw] opacity-70 pointer-events-none'
+                : 'translate-x-0 opacity-100'
+            }`}
+          >
+            <div className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-60 mb-8 border-b border-[#4a1c1c]/20 pb-2 inline-block">
+              02 / Experience
+            </div>
             <h2 className="text-5xl md:text-7xl font-serif leading-[1.1] tracking-tight mb-4">
               The Blueprint
             </h2>
@@ -359,6 +372,7 @@ export function MobiusExperience() {
             </p>
           </div>
 
+          {/* Right — view legend, always visible */}
           <div className="flex flex-col items-start md:items-end gap-2 pb-1">
             <div className="flex items-center gap-3">
               {VIEWS.map(v => (
