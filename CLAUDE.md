@@ -17,7 +17,7 @@ No test runner is configured.
 
 ## Architecture
 
-An immersive, single-page portfolio for Kushal Seemakurthi (Senior Data Scientist). Five sections map to five elements — Air (Introduction), Water (Experience), Earth (Skills), Fire (Projects), Spirit (Education) — each with a distinct visual identity and interaction pattern.
+An elegant, single-page portfolio for Kushal Seemakurthi (Senior Data Scientist). Five sections — Introduction, Experience, Skills, Projects, Education — with scroll-driven animations and interactive components. Sections use elemental IDs (`air`, `water`, `earth`, `fire`, `spirit`) for scroll tracking internally, but the design is clean and professional without an elemental visual theme.
 
 **Stack:** React 19 + TypeScript + Vite + `motion/react` (Framer Motion) + Tailwind v4 (`@tailwindcss/vite`, no config file). `@react-three/fiber` and `three` are installed but **not yet used** — they are reserved for a future immersive 3D layer.
 
