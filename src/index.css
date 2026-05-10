@@ -1,15 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-air: #FDFBF7;
-  --color-water: #C4E0E5;
-  --color-earth: #E6D3B3;
-  --color-fire: #FDE8C4;
-  --color-spirit: #F0F4F8;
-  
   --color-canvas: #FAFAFA;
   --color-text: #1A1A1A;
-  
+
   --font-serif: "Playfair Display", "Cormorant Garamond", serif;
   --font-sans: "Inter", system-ui, sans-serif;
 }

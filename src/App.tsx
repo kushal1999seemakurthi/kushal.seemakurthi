@@ -1,14 +1,8 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { useScroll, useTransform, useMotionValueEvent } from 'motion/react';
+import { useScroll, useMotionValueEvent } from 'motion/react';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { Section } from './components/Section';
 import { SidebarNav } from './components/SidebarNav';
-import { BackgroundScenes } from './components/BackgroundScenes';
 import { InteractiveCard } from './components/InteractiveCard';
 import { ExperienceStack } from './components/ExperienceStack';
 import { ProjectsTrain } from './components/ProjectsTrain';
@@ -37,15 +31,8 @@ export default function App() {
   return (
     <main className="relative w-full text-[#4a1c1c] font-sans bg-[#F4EFE6]">
       <SidebarNav activeSection={activeSection} />
-      
-      {/* Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <BackgroundScenes />
-      </div>
 
-      {/* Content wrapper */}
-      <div className="relative z-10 w-full overflow-hidden">
-        {/* Air Section */}
+      <div className="relative w-full overflow-hidden">
         <Section id="air" className="py-24" isHero={true}>
            {/* Image on the left */}
            <motion.div
@@ -134,16 +121,13 @@ export default function App() {
            </motion.div>
         </Section>
 
-        {/* Water Section -> Experience */}
-        <section id="water" className="relative z-10 w-full pointer-events-none">
+        <section id="water" className="relative w-full pointer-events-none">
           <div className="w-full pointer-events-auto">
             <ExperienceStack />
           </div>
         </section>
 
-        {/* Earth Section */}
         <Section id="earth" className="py-24">
-           {/* Earth has a tree in the center. Let's place the content split into columns avoiding the center. */}
            <motion.div 
              initial={{ opacity: 0, y: 40 }}
              whileInView={{ opacity: 1, y: 0 }}
@@ -223,7 +207,6 @@ export default function App() {
            </motion.div>
         </Section>
 
-        {/* Fire Section */}
         <Section id="fire" className="py-24 max-w-[100vw]">
             <div className="col-span-full w-full pt-12">
                <motion.div 
@@ -242,9 +225,7 @@ export default function App() {
             </div>
         </Section>
 
-        {/* Spirit Section */}
         <Section id="spirit" className="py-24 min-h-[100vh] flex flex-col justify-between">
-            {/* Spirit has bird on the right, position content heavily to the left */}
             <motion.div 
                initial={{ opacity: 0, y: 50 }}
                whileInView={{ opacity: 1, y: 0 }}
