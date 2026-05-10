@@ -1,6 +1,8 @@
-# Kushal Seemakurthi — AI-Enhanced Portfolio
+# Kushal Seemakurthi — Portfolio
 
-A craft-piece portfolio for Kushal Kumar Seemakurthi, Senior Data Scientist at IIT Dharwad. Features five elemental sections (Air, Water, Earth, Fire, Spirit) with interactive scroll-driven animations, and AI-powered features including resume analysis, RAG-based chat, and multi-agent reasoning.
+An elegant single-page portfolio for Kushal Kumar Seemakurthi, Senior Data Scientist. Features scroll-driven animations, interactive components, and AI-powered features including resume analysis and RAG-based chat.
+
+> **Ecosystem strategy docs** (hub + portfolio + blog) live one level up at `../docs/strategy/` — see [E2E_STRATEGY.md](../docs/strategy/E2E_STRATEGY.md), [PHASE_PLAN.md](../docs/strategy/PHASE_PLAN.md).
 
 **Live:** https://kushal.seemakurthi.com
 
