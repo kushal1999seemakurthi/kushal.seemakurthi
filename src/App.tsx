@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Section } from './components/Section';
 import { SidebarNav } from './components/SidebarNav';
 import { HeroSection } from './components/HeroSection';
-import { ExperienceStack } from './components/ExperienceStack';
+import { MobiusExperience } from './components/MobiusExperience';
 import { SkillsGrid } from './components/SkillsGrid';
 import { ProjectsTrain } from './components/ProjectsTrain';
 import { EducationSection } from './components/EducationSection';
@@ -40,11 +40,9 @@ export default function App() {
           <HeroSection emailCopied={emailCopied} onEmailClick={handleEmail} />
         </Section>
 
-        {/* 02 — Experience (owns its own scroll interception via wheel/touch) */}
-        <section id="water" className="relative w-full pointer-events-none">
-          <div className="w-full pointer-events-auto">
-            <ExperienceStack />
-          </div>
+        {/* 02 — Experience */}
+        <section id="water" className="relative w-full">
+          <MobiusExperience />
         </section>
 
         {/* 03 — Skills */}
