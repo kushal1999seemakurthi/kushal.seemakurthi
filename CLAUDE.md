@@ -19,7 +19,7 @@ No test runner is configured.
 
 An elegant, single-page portfolio for Kushal Seemakurthi (Senior Data Scientist). Five sections — Introduction, Experience, Skills, Projects, Education — with scroll-driven animations and interactive components. Sections use elemental IDs (`air`, `water`, `earth`, `fire`, `spirit`) for scroll tracking internally, but the design is clean and professional without an elemental visual theme.
 
-**Stack:** React 19 + TypeScript + Vite + `motion/react` (Framer Motion) + Tailwind v4 (`@tailwindcss/vite`, no config file). `@react-three/fiber` and `three` are installed but **not yet used** — they are reserved for a future immersive 3D layer.
+**Stack:** React 19 + TypeScript + Vite + `motion/react` (Framer Motion) + Tailwind v4 (`@tailwindcss/vite`, no config file). `three` and `@react-three/fiber` are **not yet installed** — they will be added when implementing the Möbius strip experience section.
 
 ### Scroll architecture
 
@@ -28,17 +28,6 @@ An elegant, single-page portfolio for Kushal Seemakurthi (Senior Data Scientist)
 `Section.tsx` uses a **second, local** `useScroll({ target: containerRef })` scoped to its own element. It drives per-section `opacity` and `y` parallax independently of the global progress. Hero section (`isHero={true}`) opts out of this motion wrapper.
 
 `ExperienceStack.tsx` intercepts `wheel` and `touchmove` events on its container div to drive a 3D cylindrical card carousel via `useSpring`, **without affecting page scroll**. The scroll intercept is intentional — users must move the cursor outside the experience zone to scroll normally.
-
-### Component responsibilities
-
-| Component | What it does |
-|---|---|
-| `SidebarNav` | Fixed 80px left sidebar; vertical text labels; `scrollIntoView` on click; active state from `activeSection` prop |
-| `BackgroundScenes` | **Stub** — currently renders an empty div. Intended to swap elemental scene JPGs from `Scenes/` based on `activeSection`. The 8 scene images (Air, Water, Earth, Fire, Reset, and 4 transitions) are ready in `Scenes/*.jpg` but are not yet wired up. |
-| `Section` | Scroll-aware wrapper — `min-h-[100svh]`, 16-column CSS grid, fade+parallax via `motion/react`. Pass `isHero={true}` to disable the motion wrapper for above-the-fold content. |
-| `InteractiveCard` | Mouse-tracking 3D tilt using `useMotionValue` + `useSpring`; dynamic border widths give the illusion of depth; resets on mouse leave. |
-| `ExperienceStack` | 3D wheel carousel. Each card's `y`, `z`, `scale`, `opacity`, `rotateX` are driven by a single `progressSpring` value via `useTransform`. Cards are laid out on a circular path using sin/cos math against the normalized spring value. |
-| `ProjectsTrain` | Infinite marquee: two duplicate `CardList` sets, each with `animate-marquee` CSS animation. Entire marquee pauses on hover via `pause-marquee` class. |
 
 ### Styling conventions
 
@@ -56,13 +45,39 @@ The `.writing-vertical` class in `index.css` applies `writing-mode: vertical-rl`
 
 The `.pause-marquee:hover .animate-marquee` + `@keyframes marquee` pattern in `index.css` controls `ProjectsTrain`'s hover-pause behavior.
 
-### Content location
+### Data layer
 
-All portfolio content is **hardcoded in component files**, not in a separate data layer:
-- Experience entries → `src/components/ExperienceStack.tsx` (`experiences` array, lines 5–51)
-- Project entries → `src/components/ProjectsTrain.tsx` (`projects` array, lines 3–25)
-- Skills tags → inline in `App.tsx` (Earth section, lines 151–202)
-- Bio, contact links, education → inline in `App.tsx`
+All content lives in `src/data/` as typed arrays — **do not hardcode content in component files**:
+
+| File | Type | Used by |
+|---|---|---|
+| `src/data/experience.ts` | `Experience[]` | `ExperienceStack` (→ `MobiusExperience`) |
+| `src/data/projects.ts` | `Project[]` | `ProjectsTrain` |
+| `src/data/skills.ts` | `SkillCategory[]` | `SkillsGrid` |
+
+Bio, contact links, and URLs live in `src/constants.ts`.
+
+### Component responsibilities
+
+`App.tsx` is a thin orchestrator (~60 lines). Section components own their own JSX; infrastructure components are shared:
+
+**Section components** (one per elemental section):
+
+| Component | Section | What it does |
+|---|---|---|
+| `HeroSection` | air | Profile image + floating badges + bio card + CTA buttons |
+| `ExperienceStack` | water | 3D wheel carousel — **being replaced by MobiusExperience** |
+| `SkillsGrid` | earth | Bento grid of 6 skill categories, reads from `data/skills.ts` |
+| `ProjectsTrain` | fire | Infinite marquee of project cards, reads from `data/projects.ts` |
+| `EducationSection` | spirit | Education card + site footer (shares `emailCopied` state from App) |
+
+**Infrastructure components** (shared / reusable):
+
+| Component | What it does |
+|---|---|
+| `Section` | Scroll-aware wrapper — `min-h-[100svh]`, 16-column CSS grid, fade+parallax. Pass `isHero={true}` to skip the motion wrapper for above-the-fold content. |
+| `SidebarNav` | Fixed 80px left sidebar; vertical labels; `scrollIntoView` on click; active state comes from `App.tsx`. |
+| `InteractiveCard` | Mouse-tracking 3D tilt via `useMotionValue` + `useSpring`; dynamic border widths simulate depth; resets on mouse leave. |
 
 ### Assets
 
